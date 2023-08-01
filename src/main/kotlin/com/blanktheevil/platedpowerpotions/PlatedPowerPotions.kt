@@ -44,6 +44,7 @@ class PlatedPowerPotions : PostInitializeSubscriber {
         PlatedArmorPower::class.java,
         PlatedArmorPower.POWER_ID,
         2,
+        potency = 4,
         primaryColor = null,
         liquidColor = Color.CYAN.cpy().mul(Color.DARK_GRAY.cpy()),
         bottleShape = AbstractPotion.PotionSize.ANVIL,
@@ -80,7 +81,7 @@ class PlatedPowerPotions : PostInitializeSubscriber {
     )
       .map {
         PlatedPowerPotion(
-          simulatedPower = it,
+          potionData = it,
           powerID = it.powerID,
           rarity = it.rarity,
           size = it.bottleShape,

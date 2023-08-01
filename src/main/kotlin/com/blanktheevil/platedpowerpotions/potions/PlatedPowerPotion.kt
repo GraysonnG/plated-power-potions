@@ -16,12 +16,12 @@ import com.megacrit.cardcrawl.powers.AbstractPower
 import com.megacrit.cardcrawl.rooms.AbstractRoom
 
 class PlatedPowerPotion<T: AbstractPower>(
-  val simulatedPower: PotionData<T>,
+  val potionData: PotionData<T>,
   val powerID: String,
   val rarity: PotionRarity,
   val size: PotionSize,
   val color: PotionColor,
-  private val potionPotency: Int = simulatedPower.potency,
+  private val potionPotency: Int = potionData.potency,
   private val strings: UIStrings = languagePack.getUIString("PlatedPowerPotion".makeID()),
   name: String = parseString(strings.TEXT[0], languagePack.getPowerStrings(powerID).NAME, 0),
   id: String = "Plated${powerID}Potion".makeID(),
@@ -37,8 +37,8 @@ class PlatedPowerPotion<T: AbstractPower>(
     isThrown = false
     description = parseString(
       strings.TEXT[1],
-      simulatedPower.strings.NAME,
-      simulatedPower.amount * getPotency()
+      potionData.strings.NAME,
+      potionData.amount * getPotency()
     )
 
     tips.clear()
@@ -50,11 +50,11 @@ class PlatedPowerPotion<T: AbstractPower>(
     val powerStrings = languagePack.getUIString("PlatedPower".makeID())
 
     tips.add(PowerTip(
-      parseString(powerStrings.TEXT[0], simulatedPower.strings.NAME, 0),
+      parseString(powerStrings.TEXT[0], potionData.strings.NAME, 0),
       parseString(
         strings.TEXT[2] + powerStrings.TEXT[2],
-        simulatedPower.strings.NAME,
-        simulatedPower.amount
+        potionData.strings.NAME,
+        potionData.amount
       )
     ))
   }
@@ -62,9 +62,9 @@ class PlatedPowerPotion<T: AbstractPower>(
   fun addToBaseMod() {
     BaseMod.addPotion(
       PlatedPowerPotion::class.java,
-      simulatedPower.liquidColor.cpy(),
-      simulatedPower.hybridColor?.cpy(),
-      simulatedPower.primaryColor?.cpy(),
+      potionData.liquidColor.cpy(),
+      potionData.hybridColor?.cpy(),
+      potionData.primaryColor?.cpy(),
       ID,
     )
   }
@@ -77,7 +77,7 @@ class PlatedPowerPotion<T: AbstractPower>(
         ApplyPowerAction(
           target,
           target,
-          PlatedPower(simulatedPower.getInstance(
+          PlatedPower(potionData.getInstance(
             AbstractDungeon.player
           ), getPotency())
         )
@@ -87,8 +87,8 @@ class PlatedPowerPotion<T: AbstractPower>(
 
   override fun makeCopy(): AbstractPotion {
     return PlatedPowerPotion(
-      simulatedPower = simulatedPower,
-      powerID = simulatedPower.powerID,
+      potionData = potionData,
+      powerID = potionData.powerID,
       potionPotency = potionPotency,
       rarity = rarity,
       size = size,

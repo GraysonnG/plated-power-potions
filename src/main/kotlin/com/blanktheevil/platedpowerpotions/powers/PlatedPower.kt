@@ -34,7 +34,7 @@ class PlatedPower<T : AbstractPower>(
   init {
     this.ID = POWER_ID + ":${simulatedPower.ID}"
     this.name = parseString(uiStrings.TEXT[0], simulatedPower.name, 0)
-    this.amount = amount
+    this.amount = amount * simulatedPower.amount
     this.type = simulatedPower.type
     this.img = null
     simulatedPower.amount *= amount
@@ -45,7 +45,7 @@ class PlatedPower<T : AbstractPower>(
 
   override fun updateDesc() {
     simulatedPower.updateDescription()
-    this.description = parseString(uiStrings.TEXT[1], simulatedPower.name, amount) +
+    this.description = parseString(uiStrings.TEXT[1], simulatedPower.name, simulatedPower.amount) +
       parseString(uiStrings.TEXT[2], simulatedPower.name, amountToLose)
   }
 
@@ -62,7 +62,7 @@ class PlatedPower<T : AbstractPower>(
       info.type != DamageInfo.DamageType.HP_LOSS &&
       damageAmount > 0
     ) {
-      this.addToBot(ReducePowerAction(owner, owner, this.ID, 1))
+      this.addToBot(ReducePowerAction(owner, owner, this.ID, amountToLose))
     }
     simulatedPower.wasHPLost(info, damageAmount)
   }
