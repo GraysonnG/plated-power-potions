@@ -42,6 +42,13 @@
             <systemPath>${modsFolder}1605060445/ModTheSpire.jar</systemPath>
         </dependency>
         <dependency>
+            <groupId>com.evacipated.cardcrawl</groupId>
+            <artifactId>WidePotions</artifactId>
+            <version>1</version>
+            <scope>system</scope>
+            <systemPath>${modsFolder}2368513093/WidePotions.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test</artifactId>
             <version>${kotlin.version}</version>

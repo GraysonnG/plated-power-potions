@@ -3,7 +3,9 @@ package com.blanktheevil.platedpowerpotions
 import basemod.BaseMod
 import basemod.interfaces.PostInitializeSubscriber
 import com.badlogic.gdx.graphics.Color
+import com.blanktheevil.platedpowerpotions.crossover.WidePotionsCrossover
 import com.blanktheevil.platedpowerpotions.potions.PlatedPowerPotion
+import com.evacipated.cardcrawl.modthespire.Loader
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer
 import com.megacrit.cardcrawl.core.Settings
 import com.megacrit.cardcrawl.localization.UIStrings
@@ -94,6 +96,10 @@ class PlatedPowerPotions : PostInitializeSubscriber {
           potion.addToBaseMod()
         }
       }
+
+    if (Loader.isModLoaded("widepotions")) {
+      WidePotionsCrossover.init()
+    }
   }
 
   private fun makePath(language: Settings.GameLanguage, fileName: String): String {

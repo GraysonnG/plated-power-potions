@@ -32,9 +32,11 @@ class PlatedPowerPotion<T: AbstractPower>(
   size,
   color,
 ) {
-
   init {
     isThrown = false
+
+    val powerStrings = languagePack.getUIString("PlatedPower".makeID())
+
     description = parseString(
       strings.TEXT[1],
       potionData.strings.NAME,
@@ -42,12 +44,11 @@ class PlatedPowerPotion<T: AbstractPower>(
     )
 
     tips.clear()
+
     tips.add(PowerTip(
       this.name,
       this.description,
     ))
-
-    val powerStrings = languagePack.getUIString("PlatedPower".makeID())
 
     tips.add(PowerTip(
       parseString(powerStrings.TEXT[0], potionData.strings.NAME, 0),
