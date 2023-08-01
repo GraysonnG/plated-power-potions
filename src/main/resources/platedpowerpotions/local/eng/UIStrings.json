@@ -1,0 +1,16 @@
+{
+  "plated-power-potions:PlatedPower": {
+    "TEXT": [
+      "Plated {name}",
+      "Gain the effect of {amount} #y{name}.",
+      " NL NL Receiving unblocked attack damage reduces #yPlated #y{name} by #b{amount}."
+    ]
+  },
+  "plated-power-potions:PlatedPowerPotion": {
+    "TEXT": [
+      "Essence of {name}",
+      "Gain #b{amount} #yPlated #y{name}",
+      "Gain the effect of #y{name}"
+    ]
+  }
+}
