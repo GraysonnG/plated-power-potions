@@ -1,6 +1,7 @@
 package com.blanktheevil.platedpowerpotions.potions
 
 import com.badlogic.gdx.graphics.Color
+import com.blanktheevil.platedpowerpotions.LightsOutObject
 import com.blanktheevil.platedpowerpotions.actions.WildPotionAction
 import com.blanktheevil.platedpowerpotions.languagePack
 import com.blanktheevil.platedpowerpotions.makeID
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.characters.AbstractPlayer
 import com.megacrit.cardcrawl.core.AbstractCreature
 import com.megacrit.cardcrawl.core.CardCrawlGame
+import com.megacrit.cardcrawl.core.Settings
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.helpers.PowerTip
 import com.megacrit.cardcrawl.localization.UIStrings
@@ -39,7 +41,7 @@ class WildPlatedPotion(
   Color.WHITE.cpy(),
   null,
   null,
-) {
+), LightsOutObject {
 
   override fun initializeData() {
     val strings = CardCrawlGame.languagePack.getUIString(POTION_ID)
@@ -70,8 +72,9 @@ class WildPlatedPotion(
     val random = Random(AbstractDungeon.miscRng.counter)
 
     addToBot(WildPotionAction(
-      start = hb.cX to hb.cY,
-      targets = List(5) {
+      potion = this,
+      start = Settings.WIDTH.div(2f) to Settings.HEIGHT.div(4f).times(3f),
+      targets = List(getPotency()) {
         val target = creatures.random(random)
         val power = getPower(target)
         val isPlated = AbstractDungeon.miscRng.randomBoolean()
@@ -81,7 +84,7 @@ class WildPlatedPotion(
   }
 
   override fun getPotency(p: Int): Int {
-    return 2
+    return 5
   }
 
   override fun makeCopy(): AbstractPotion {
@@ -95,33 +98,46 @@ class WildPlatedPotion(
 
     return when (powerID) {
       StrengthPower.POWER_ID -> {
-        StrengthPower(target, getPotency())
+        StrengthPower(target, getPotency() / 2)
       }
       DexterityPower.POWER_ID -> {
-        DexterityPower(target, getPotency())
+        DexterityPower(target, getPotency() / 2)
       }
       WeakPower.POWER_ID -> {
-        WeakPower(target, getPotency(), false)
+        WeakPower(target, getPotency() / 2, false)
       }
       VulnerablePower.POWER_ID -> {
-        VulnerablePower(target, getPotency(), false)
+        VulnerablePower(target, getPotency() / 2, false)
       }
       RitualPower.POWER_ID -> {
-        RitualPower(target, getPotency(), isTargetPlayer)
+        RitualPower(target, getPotency() / 2, isTargetPlayer)
       }
       PoisonPower.POWER_ID -> {
-        PoisonPower(target, AbstractDungeon.player, getPotency())
+        PoisonPower(target, AbstractDungeon.player, getPotency() / 2)
       }
       BufferPower.POWER_ID -> {
-        BufferPower(target, getPotency())
+        BufferPower(target, getPotency() / 2)
       }
       ThornsPower.POWER_ID -> {
-        ThornsPower(target, getPotency())
+        ThornsPower(target, getPotency() / 2)
       }
       else -> {
         TheBombPower(target, 2, getPotency() * 4)
       }
     }
+  }
+
+  override fun _lightsOutGetXYRI(): FloatArray {
+    return floatArrayOf(
+      this.posX,
+      this.posY,
+      100f,
+      1f,
+    )
+  }
+
+  override fun _lightsOutGetColor(): Array<Color> {
+    return arrayOf(this.liquidColor.cpy())
   }
 
   companion object {
