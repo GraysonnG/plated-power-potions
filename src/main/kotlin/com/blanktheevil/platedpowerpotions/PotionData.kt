@@ -3,6 +3,7 @@ package com.blanktheevil.platedpowerpotions
 import com.badlogic.gdx.graphics.Color
 import com.megacrit.cardcrawl.characters.AbstractPlayer
 import com.megacrit.cardcrawl.core.AbstractCreature
+import com.megacrit.cardcrawl.localization.PowerStrings
 import com.megacrit.cardcrawl.potions.AbstractPotion.PotionRarity
 import com.megacrit.cardcrawl.potions.AbstractPotion.PotionSize
 import kotlin.random.Random
@@ -18,7 +19,7 @@ class PotionData<T>(
   val bottleShape: PotionSize = getBottle(powerID),
   val rarity: PotionRarity = PotionRarity.UNCOMMON,
 ) {
-  val strings = languagePack.getPowerStrings(powerID)
+  val strings: PowerStrings = languagePack.getPowerStrings(powerID)
 
   fun getInstance(player: AbstractPlayer): T {
     return powerClass.getConstructor(

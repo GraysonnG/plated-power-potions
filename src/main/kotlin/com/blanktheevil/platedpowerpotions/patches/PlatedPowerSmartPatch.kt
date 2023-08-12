@@ -134,11 +134,11 @@ object PlatedPowerSmartPatch {
     private fun getReplaceString(className: String, args: String): String =
       "{" +
         "if($spireFieldBooleanString) {" +
-        "\$_=new $className$args;" +
+          "\$_=new $className$args;" +
         "} else {" +
-        "\$_=\$proceed(\$\$);" +
+          "\$_=\$proceed(\$\$);" +
         "}" +
-        "}"
+      "}"
 
     private val spireFieldBooleanString: String =
       "${PlatedPowerInstrument::class.java.name}.spireFieldToBoolean(this)"

@@ -12,5 +12,11 @@
       "Gain #b{amount} #yPlated #y{name}",
       "Gain the effect of #y{name}"
     ]
+  },
+  "plated-power-potions:WildPlatedPotion": {
+    "TEXT": [
+      "Strange Concoction",
+      "Who knows what it does..."
+    ]
   }
 }

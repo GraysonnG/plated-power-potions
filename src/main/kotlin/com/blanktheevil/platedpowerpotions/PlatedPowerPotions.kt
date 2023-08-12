@@ -5,6 +5,7 @@ import basemod.interfaces.PostInitializeSubscriber
 import com.badlogic.gdx.graphics.Color
 import com.blanktheevil.platedpowerpotions.crossover.WidePotionsCrossover
 import com.blanktheevil.platedpowerpotions.potions.PlatedPowerPotion
+import com.blanktheevil.platedpowerpotions.potions.WildPlatedPotion
 import com.evacipated.cardcrawl.modthespire.Loader
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer
 import com.megacrit.cardcrawl.core.Settings
@@ -96,6 +97,14 @@ class PlatedPowerPotions : PostInitializeSubscriber {
           potion.addToBaseMod()
         }
       }
+
+    BaseMod.addPotion(
+      WildPlatedPotion::class.java,
+      Color.CORAL.cpy(),
+      Color.CHARTREUSE.cpy(),
+      Color.ROYAL.cpy(),
+      WildPlatedPotion.POTION_ID,
+    )
 
     if (Loader.isModLoaded("widepotions")) {
       WidePotionsCrossover.init()
