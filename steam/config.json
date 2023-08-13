@@ -3,7 +3,7 @@
   "title": "Plated Power Potions",
   "description": "Adds new potions to the game that give you a buff that wears off upon taking damage.\n\nTODO:\nBetter Description",
   "visibility": "private",
-  "changeNote": "",
+  "changeNote": "1.0.0",
   "tags": [
     "potions",
     "content"
