@@ -17,10 +17,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.helpers.PowerTip
 import com.megacrit.cardcrawl.localization.UIStrings
 import com.megacrit.cardcrawl.potions.AbstractPotion
+import com.megacrit.cardcrawl.potions.RegenPotion
 import com.megacrit.cardcrawl.powers.AbstractPower
 import com.megacrit.cardcrawl.powers.BufferPower
 import com.megacrit.cardcrawl.powers.DexterityPower
+import com.megacrit.cardcrawl.powers.IntangiblePlayerPower
+import com.megacrit.cardcrawl.powers.MetallicizePower
 import com.megacrit.cardcrawl.powers.PoisonPower
+import com.megacrit.cardcrawl.powers.RegenPower
 import com.megacrit.cardcrawl.powers.RitualPower
 import com.megacrit.cardcrawl.powers.StrengthPower
 import com.megacrit.cardcrawl.powers.TheBombPower
@@ -152,6 +156,10 @@ class WildPlatedPotion(
       BufferPower.POWER_ID,
       ThornsPower.POWER_ID,
       TheBombPower.POWER_ID,
+      MetallicizePower.POWER_ID,
+      RegenPower.POWER_ID,
+      IntangiblePlayerPower.POWER_ID,
+      // Custom Rage Power
     )
   }
 }
