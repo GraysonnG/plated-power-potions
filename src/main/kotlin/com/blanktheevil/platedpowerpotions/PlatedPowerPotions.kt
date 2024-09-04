@@ -5,13 +5,12 @@ import basemod.interfaces.PostInitializeSubscriber
 import com.badlogic.gdx.graphics.Color
 import com.blanktheevil.platedpowerpotions.crossover.WidePotionsCrossover
 import com.blanktheevil.platedpowerpotions.potions.PlatedPowerPotion
+import com.blanktheevil.platedpowerpotions.potions.PotionData
 import com.blanktheevil.platedpowerpotions.potions.WildPlatedPotion
 import com.evacipated.cardcrawl.modthespire.Loader
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer
 import com.megacrit.cardcrawl.core.Settings
 import com.megacrit.cardcrawl.localization.UIStrings
-import com.megacrit.cardcrawl.potions.AbstractPotion
-import com.megacrit.cardcrawl.powers.*
 
 @SpireInitializer
 class PlatedPowerPotions : PostInitializeSubscriber {
@@ -24,79 +23,7 @@ class PlatedPowerPotions : PostInitializeSubscriber {
       )
     )
 
-    platedPotions = listOf(
-      PotionData(
-        StrengthPower::class.java,
-        StrengthPower.POWER_ID,
-        1,
-        primaryColor = Color.CORAL,
-      ),
-      PotionData(
-        DexterityPower::class.java,
-        DexterityPower.POWER_ID,
-        1,
-        primaryColor = Color.CHARTREUSE,
-      ),
-      PotionData(
-        FocusPower::class.java,
-        FocusPower.POWER_ID,
-        1,
-        primaryColor = Color.ROYAL,
-      ),
-      PotionData(
-        PlatedArmorPower::class.java,
-        PlatedArmorPower.POWER_ID,
-        2,
-        potency = 4,
-        primaryColor = null,
-        liquidColor = Color.CYAN.cpy().mul(Color.DARK_GRAY.cpy()),
-        bottleShape = AbstractPotion.PotionSize.ANVIL,
-      ),
-      PotionData(
-        ArtifactPower::class.java,
-        ArtifactPower.POWER_ID,
-        1,
-        primaryColor = Color.YELLOW,
-      ),
-      PotionData(
-        ThornsPower::class.java,
-        ThornsPower.POWER_ID,
-        1,
-        primaryColor = Color.LIGHT_GRAY,
-      ),
-      PotionData(
-        EnergizedPower::class.java,
-        EnergizedPower.POWER_ID,
-        1,
-        2,
-        primaryColor = Color.YELLOW,
-        bottleShape = AbstractPotion.PotionSize.BOLT
-      ),
-      PotionData(
-        RegenPower::class.java,
-        RegenPower.POWER_ID,
-        1,
-        potency = 7,
-        primaryColor = Color.WHITE,
-        rarity = AbstractPotion.PotionRarity.RARE,
-        bottleShape = AbstractPotion.PotionSize.HEART,
-      )
-    )
-      .map {
-        PlatedPowerPotion(
-          potionData = it,
-          powerID = it.powerID,
-          rarity = it.rarity,
-          size = it.bottleShape,
-          color = AbstractPotion.PotionColor.ATTACK,
-        )
-      }
-      .associateBy { it.ID }
-      .also {
-        it.values.forEach { potion ->
-          potion.addToBaseMod()
-        }
-      }
+    platedPotions = PotionData.addAllPotions()
 
     BaseMod.addPotion(
       WildPlatedPotion::class.java,
@@ -106,7 +33,7 @@ class PlatedPowerPotions : PostInitializeSubscriber {
       WildPlatedPotion.POTION_ID,
     )
 
-    if (Loader.isModLoaded("widepotions")) {
+    if (Loader.isModLoaded(WIDE_POTION_MODID)) {
       WidePotionsCrossover.init()
     }
   }
@@ -122,7 +49,8 @@ class PlatedPowerPotions : PostInitializeSubscriber {
   }
 
   companion object {
-    internal var id: String = "plated-power-potions"
+    internal const val MODID: String = "plated-power-potions"
+    internal const val WIDE_POTION_MODID = "widepotions"
 
     internal var platedPotions: Map<String, PlatedPowerPotion<*>>
       = emptyMap()
@@ -131,10 +59,6 @@ class PlatedPowerPotions : PostInitializeSubscriber {
     @JvmStatic
     fun initialize() {
       BaseMod.subscribe(PlatedPowerPotions())
-    }
-
-    fun createPath(restOfPath: String): String {
-      return "$id/images/$restOfPath"
     }
   }
 }

@@ -5,10 +5,6 @@ import com.blanktheevil.platedpowerpotions.LightsOutObject
 import com.blanktheevil.platedpowerpotions.actions.WildPotionAction
 import com.blanktheevil.platedpowerpotions.languagePack
 import com.blanktheevil.platedpowerpotions.makeID
-import com.blanktheevil.platedpowerpotions.powers.PlatedPower
-import com.blanktheevil.platedpowerpotions.vfx.WildPotionEffect
-import com.blanktheevil.platedpowerpotions.vfxQueue
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction
 import com.megacrit.cardcrawl.characters.AbstractPlayer
 import com.megacrit.cardcrawl.core.AbstractCreature
 import com.megacrit.cardcrawl.core.CardCrawlGame
@@ -17,20 +13,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon
 import com.megacrit.cardcrawl.helpers.PowerTip
 import com.megacrit.cardcrawl.localization.UIStrings
 import com.megacrit.cardcrawl.potions.AbstractPotion
-import com.megacrit.cardcrawl.potions.RegenPotion
-import com.megacrit.cardcrawl.powers.AbstractPower
-import com.megacrit.cardcrawl.powers.BufferPower
-import com.megacrit.cardcrawl.powers.DexterityPower
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower
-import com.megacrit.cardcrawl.powers.MetallicizePower
-import com.megacrit.cardcrawl.powers.PoisonPower
-import com.megacrit.cardcrawl.powers.RegenPower
-import com.megacrit.cardcrawl.powers.RitualPower
-import com.megacrit.cardcrawl.powers.StrengthPower
-import com.megacrit.cardcrawl.powers.TheBombPower
-import com.megacrit.cardcrawl.powers.ThornsPower
-import com.megacrit.cardcrawl.powers.VulnerablePower
-import com.megacrit.cardcrawl.powers.WeakPower
+import com.megacrit.cardcrawl.powers.*
 import kotlin.random.Random
 
 

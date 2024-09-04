@@ -1,12 +1,10 @@
 package com.blanktheevil.platedpowerpotions.vfx
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Interpolation
 import com.blanktheevil.platedpowerpotions.colorFromHSL
 import com.blanktheevil.platedpowerpotions.vfxQueue
-import com.megacrit.cardcrawl.core.AbstractCreature
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect
 import com.megacrit.cardcrawl.vfx.FastSmokeParticle
 import com.megacrit.cardcrawl.vfx.combat.LightFlareParticleEffect

@@ -2,7 +2,6 @@ package com.blanktheevil.platedpowerpotions.powers
 
 import basemod.interfaces.CloneablePowerInterface
 import com.badlogic.gdx.graphics.Texture
-import com.blanktheevil.platedpowerpotions.Textures
 import com.blanktheevil.platedpowerpotions.languagePack
 import com.megacrit.cardcrawl.core.AbstractCreature
 import com.megacrit.cardcrawl.helpers.ImageMaster
@@ -19,7 +18,7 @@ abstract class Power(
   isTurnBased: Boolean = false,
   isPostAction: Boolean = false,
   canGoNegative: Boolean = false,
-  val strings: PowerStrings = languagePack.getPowerStrings(id)
+  strings: PowerStrings = languagePack.getPowerStrings(id)
 ) : AbstractPower(), CloneablePowerInterface {
   constructor(owner: AbstractCreature, amount: Int, builder: Builder) : this(
     owner,
@@ -63,13 +62,7 @@ abstract class Power(
     var isPostAction: Boolean = false,
     var canGoNegative: Boolean = false
   ) {
-    fun img(path: String): Builder = this.apply { img = Textures.powers.get(path) }
-    fun priority(value: Int): Builder = this.apply { priority = value }
-    fun buff(): Builder = this.apply { type = PowerType.BUFF }
-    fun debuff(): Builder = this.apply { type = PowerType.DEBUFF }
-//    fun neutral(): Builder = this.apply { type = NeutralPowertypePatch.NEUTRAL }
     fun isTurnBased(): Builder = this.apply { isTurnBased = true }
     fun isPostAction(): Builder = this.apply { isPostAction = true }
-    fun canGoNegative(): Builder = this.apply { canGoNegative = true }
   }
 }

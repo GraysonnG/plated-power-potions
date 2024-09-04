@@ -1,8 +1,6 @@
 package com.blanktheevil.platedpowerpotions.potions
 
-import basemod.BaseMod
 import basemod.abstracts.CustomPotion
-import com.blanktheevil.platedpowerpotions.PotionData
 import com.blanktheevil.platedpowerpotions.languagePack
 import com.blanktheevil.platedpowerpotions.makeID
 import com.blanktheevil.platedpowerpotions.powers.PlatedPower
@@ -17,20 +15,20 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom
 
 class PlatedPowerPotion<T: AbstractPower>(
   val potionData: PotionData<T>,
-  val powerID: String,
-  val rarity: PotionRarity,
-  val size: PotionSize,
-  val color: PotionColor,
   private val potionPotency: Int = potionData.potency,
   private val strings: UIStrings = languagePack.getUIString("PlatedPowerPotion".makeID()),
-  name: String = parseString(strings.TEXT[0], languagePack.getPowerStrings(powerID).NAME, 0),
-  id: String = "Plated${powerID}Potion".makeID(),
+  name: String = parseString(
+    strings.TEXT[0],
+    languagePack.getPowerStrings(potionData.powerID).NAME,
+    0
+  ),
+  id: String = "Plated${potionData.powerID}Potion".makeID(),
 ) : CustomPotion(
   name,
   id,
-  rarity,
-  size,
-  color,
+  potionData.rarity,
+  potionData.bottleShape,
+  PotionColor.ATTACK,
 ) {
   init {
     isThrown = false
@@ -60,16 +58,6 @@ class PlatedPowerPotion<T: AbstractPower>(
     ))
   }
 
-  fun addToBaseMod() {
-    BaseMod.addPotion(
-      PlatedPowerPotion::class.java,
-      potionData.liquidColor.cpy(),
-      potionData.hybridColor?.cpy(),
-      potionData.primaryColor?.cpy(),
-      ID,
-    )
-  }
-
   override fun use(player: AbstractCreature?) {
     val target = AbstractDungeon.player
 
@@ -78,23 +66,17 @@ class PlatedPowerPotion<T: AbstractPower>(
         ApplyPowerAction(
           target,
           target,
-          PlatedPower(potionData.getInstance(
-            AbstractDungeon.player
-          ), getPotency())
+          PlatedPower(
+            potionData.getInstance(),
+            getPotency()
+          )
         )
       )
     }
   }
 
   override fun makeCopy(): AbstractPotion {
-    return PlatedPowerPotion(
-      potionData = potionData,
-      powerID = potionData.powerID,
-      potionPotency = potionPotency,
-      rarity = rarity,
-      size = size,
-      color = color,
-    )
+    return PlatedPowerPotion(potionData = potionData)
   }
 
   override fun getPotency(p0: Int): Int {

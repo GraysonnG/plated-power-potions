@@ -1,7 +1,11 @@
 package com.blanktheevil.platedpowerpotions.patches
 
 import com.evacipated.cardcrawl.modthespire.Loader
-import com.evacipated.cardcrawl.modthespire.lib.*
+import com.evacipated.cardcrawl.modthespire.lib.LineFinder
+import com.evacipated.cardcrawl.modthespire.lib.Matcher
+import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch
+import com.evacipated.cardcrawl.modthespire.lib.SpireRawPatch
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction
 import com.megacrit.cardcrawl.powers.AbstractPower
@@ -9,10 +13,16 @@ import javassist.CtBehavior
 import javassist.Modifier
 import javassist.expr.ExprEditor
 import javassist.expr.NewExpr
-import org.clapper.util.classutil.*
+import org.clapper.util.classutil.AbstractClassFilter
+import org.clapper.util.classutil.AndClassFilter
+import org.clapper.util.classutil.ClassFilter
+import org.clapper.util.classutil.ClassFinder
+import org.clapper.util.classutil.ClassInfo
+import org.clapper.util.classutil.ClassModifiersClassFilter
+import org.clapper.util.classutil.InterfaceOnlyClassFilter
+import org.clapper.util.classutil.NotClassFilter
 import java.io.File
 import java.net.URISyntaxException
-import java.util.ArrayList
 
 @Suppress("unused")
 @SpirePatch(clz = AbstractPower::class, method = SpirePatch.CONSTRUCTOR)

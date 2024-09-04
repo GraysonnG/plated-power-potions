@@ -1,6 +1,5 @@
 package com.blanktheevil.platedpowerpotions.patches
 
-import basemod.patches.com.megacrit.cardcrawl.helpers.PotionLibrary.PotionHelperGetPotion
 import com.blanktheevil.platedpowerpotions.PlatedPowerPotions
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch
